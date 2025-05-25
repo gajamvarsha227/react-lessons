@@ -13,7 +13,7 @@ import App9 from "./components/App9";
 import App10 from "./components/App10";
 import App11 from "./components/App11";
 import App12 from "./components/App12";
-import Header from "./components/Header";
+import Header from ". /components/Header";
 import Footer from "./components/Footer";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";

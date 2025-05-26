@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -15,6 +14,7 @@ import App10 from "./components/App10";
 import App11 from "./components/App11";
 import App12 from "./components/App12";
 import App13 from "./components/App13";
+import App14 from "./components/App14";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -38,6 +38,7 @@ function App() {
          <Route path="/app11" element={<App11 />}></Route>
          <Route path="/app12" element={<App12 />}></Route>
           <Route path="/app13" element={<App13 />}></Route>
+          <Route path="/app14" element={<App14 />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

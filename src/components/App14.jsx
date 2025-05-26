@@ -1,30 +1,40 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+
 export default function App14() {
   const [users, setUsers] = useState([]);
-  const fetchData = async () => {
-    const url = "https://jsonplaceholder.typicode.com/users";
-    const res = await axios(url);
-    setUsers(res.data);
-  };
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
-    fetchData();
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((err) => console.error("Error fetching users:", err));
   }, []);
+
+  // Filter users based on search
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div>
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
       <h1>App14</h1>
       <h2>useEffect hook to fetch api</h2>
-      <p>
-        <input type="text" placeholder="Search name" />
-      </p>
+
+      <input
+        type="text"
+        placeholder="Search name"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{ marginBottom: "10px", padding: "5px", width: "200px" }}
+      />
+
       <ol>
-        {users &&
-          users.map((value) => (
-            <li key={value.id}>
-              {value.name}, {value.email}, {value.phone}
-            </li>
-          ))}
+        {filteredUsers.map((user) => (
+          <li key={user.id}>
+            {user.name}, {user.email}, {user.phone}
+          </li>
+        ))}
       </ol>
     </div>
   );

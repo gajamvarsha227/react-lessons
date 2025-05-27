@@ -1,51 +1,54 @@
-import React, { useState, useEffect } from 'react';
-
+import React from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function App19() {
-  const [runs, setRuns] = useState(0);
-  const [wickets, setWickets] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-
+  const [run, setRun] = useState(1);
+  const [wicket, setWicket] = useState(0);
+  const [msg, setMsg] = useState();
+  const Navigate = useNavigate();
   useEffect(() => {
-    if (wickets >= 10) {
-      setGameOver(true);
-    }
-  }, [wickets]);
+    setMsg("Well Done!");
+  }, [run]);
+  useEffect(() => {
+    setMsg("Better Luck Next Time!");
+  }, [wicket]);
 
-  const handleRun = () => {
-    if (!gameOver) {
-      setRuns(runs + 1);
+  const incrementRun = () => {
+    if (wicket < 11) {
+      setRun(run + 1);
     }
   };
 
-  const handleWicket = () => {
-    if (!gameOver) {
-      setWickets(wickets + 1);
+  const incrementWicket = () => {
+    if (wicket < 10) {
+      setWicket(wicket + 1);
+    } else {
+      setMsg("Game Over");
     }
   };
+
+  const navToApp1 = () => {
+    Navigate("/")
+  }
 
   return (
-    <div style={{ padding: 20, fontFamily: 'Arial' }}>
+    <div>
       <h1>App19</h1>
       <h2>Assignment</h2>
-      <h2>Cricket Scoreboard</h2>
+      <hr />
 
-      <div style={{ margin: 20 }}>
-        <h1>{runs}</h1>
-        <button onClick={handleRun} disabled={gameOver}>Run</button>
-        <h1>{wickets}</h1>
-        <button onClick={handleWicket} disabled={gameOver}>Wicket</button>
-      </div>
+      <p>
+        <button onClick={incrementRun}>Run:{run}</button>
+      </p>
+      <p>
+        <button onClick={incrementWicket}>Wicket:{wicket}</button>
+      </p>
+      <hr />
+      {msg}
+      <hr />
 
-      <div>
-        {gameOver ? (
-          <h3>Game Over!</h3>
-        ) : (
-          <>
-            <h4>Well Done!</h4>
-            <h4>Better Luck Next Time!</h4>
-          </>
-        )}
-      </div>
+      <p><button onClick={navToApp1}>Go to App1</button></p>
+
     </div>
   );
 }

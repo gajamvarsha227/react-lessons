@@ -27,7 +27,6 @@ export default function App19() {
     <div style={{ padding: 20, fontFamily: 'Arial' }}>
       <h1>App19</h1>
       <h2>Assignment</h2>
-      <p><strong>Hint: useEffect</strong></p>
       <h2>Cricket Scoreboard</h2>
 
       <div style={{ margin: 20 }}>

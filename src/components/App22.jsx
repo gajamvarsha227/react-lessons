@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
-
-export default function App22() {
-  const [temp, setTemp] = useState();
-
-  const fetchWeather = async () => {
-      const url = "http://localhost:8080/weather"; 
-      const res = await axios.get(url);
-      setTemp(res.data);
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../App";
+import axios from "axios";
+export default function Product() {
+  const { user } = useContext(AppContext);
+  const [products, setProducts] = useState([]);
+  const fetchProducts = async () => {
+    const res = await axios.get("http://localhost:8080/products");
+    setProducts(res.data);
   };
-  
-  useEffect(()=>{
-    fetchWeather();
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   return (
-    <div  style={{ fontSize: "24px", marginTop: "10px", backgroundColor: "Blue" }}>
-        <h1>Weather Report</h1>
-        <div>{temp}</div>
+    <div>
+      <h3>Welcome {user.name}! </h3>
+      <h2>Product List</h2>
+      {products.map(product => (
+          <li key={product.id} style={{ margin: "10px 0" }}>
+            <strong>{product.name}</strong>: ${product.price}
+          </li>
+        ))}
     </div>
-  )
+  );
 }

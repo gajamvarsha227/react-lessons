@@ -15,7 +15,7 @@ export default function App22() {
   }, []);
 
   return (
-    <div  style={{ fontSize: "24px", marginTop: "10px", backgroundColor: "orange" }}>
+    <div  style={{ fontSize: "24px", marginTop: "10px", backgroundColor: "Blue" }}>
         <h1>Weather Report</h1>
         <div>{temp}</div>
     </div>
